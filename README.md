@@ -16,4 +16,4 @@ git commit -m "mensaje"
 git push origin main
 
 ```
-
+![Index](https://github.com/NeiraP28/CH53-EjercicioDOM/blob/main/images/Captura%20de%20pantalla%202025-04-08%20104245.png)
