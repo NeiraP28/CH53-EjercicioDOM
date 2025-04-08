@@ -9,12 +9,11 @@ Tareas por realizar:
 
 --- 
 Código para actuializar el repositorio
-````
+```
 git status
 git add .
 git commit -m "mensaje"
 git push origin main
-
 ```
 > Vista previa del index.html 
 
