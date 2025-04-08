@@ -36,5 +36,18 @@ btnMostrar.addEventListener("click", function(event){
     event.preventDefault(); //no hagas lo que haces por defecto 
     console.log("botón btnModificar presionado");
     
+    let element = document.createElement("li");
+    element.innerText = "Another item"; //esto hara un <li>Another ithem</li>
+    
+//para poder mostrar ambos elementos (before y prepend) podemos clonar uno y 
+//asi apareceran ambos en sus correspondientes partes con cloneNode
+    let element2 = element.cloneNode(true);
+
+    /* listas.item(0).before(element);
+    listas.item(0).prepend(element2); */
+    let element3 = element.cloneNode(true);
+    listas.item(0).append(element);
+    listas.item(0).after(element3);
+
 });
 
