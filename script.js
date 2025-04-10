@@ -6,6 +6,9 @@ let btnMostrar = document.getElementById("btnMostrar");
 let encabezado1 = document.getElementById("encabezado1");
 let encabezado2 = document.getElementById("encabezado2");
 let listas = document.getElementsByTagName("ul");
+let txtRFC = document.getElementById("txtRFC");
+let txtCURP = document.getElementById("txtCURP");
+let txtTelefono = document.getElementById("txtTelefono");
 
 let elementos = document.getElementsByClassName("list-group-item");
 
@@ -43,11 +46,68 @@ btnMostrar.addEventListener("click", function(event){
 //asi apareceran ambos en sus correspondientes partes con cloneNode
     let element2 = element.cloneNode(true);
 
+
+
     /* listas.item(0).before(element);
     listas.item(0).prepend(element2); */
-    let element3 = element.cloneNode(true);
+    /* let element3 = element.cloneNode(true);
     listas.item(0).append(element);
-    listas.item(0).after(element3);
+    listas.item(0).after(element3); */
 
+    /* //afterbegin inserta elemento al principio de la lista 
+    listas.item(1).insertAdjacentElement("afterbegin", element);
+    //beforeen inserta elemento alfinal de la lista
+    listas.item(1).insertAdjacentElement("beforeend", element2); */
+
+
+    //esto inserta elemento directamente sin necesidad de clonarlos 
+        listas.item(1).insertAdjacentHTML("beforebegin", 
+        `<li class = "list-group-item">Before End item</li>`);
+
+        listas.item(1).insertAdjacentHTML("afterend", 
+            `<li class = "list-group-item">Before End item</li>`);
+
+        listas.item(1).insertAdjacentHTML("afterbegin", 
+                `<li class = "list-group-item">Before End item</li>`);
+
+
+        listas.item(1).insertAdjacentHTML("beforeend", 
+        `<li class = "list-group-item">Before End item</li>`);
+
+});//btnMostrar
+
+//Se ejecuta cuando termina de cargar todos los elementos de la página 
+window.addEventListener("load", function(event){
+    console.log("se termino de cargar la página");
+    
+}); //load
+
+//esto seria llamar evento por evento con su funcion
+/* //blur = cuando se sale del campo, value es el texto que ingresamos y que podemos reasignar 
+txtRFC.addEventListener("blur", function(event){
+    event.preventDefault();
+    txtRFC.value = txtRFC.value.toUpperCase(); //touUpperCase para convertir a mayusculas, junto con el blur cuando se sale del 
+    //campo el RFC se convertira en mayusculas 
 });
 
+
+txtCURP.addEventListener("blur", function(event){
+    event.preventDefault();
+    txtCURP.value = txtCURP.value.toUpperCase();
+}); */
+
+//podemos optimizarlo creando una sola funcion y reutilizandola asi 
+function txtToUpper (event){
+    event.preventDefault();
+    //el target hace referencia al evento.
+    event.target.value = event.target.value.trim().toUpperCase();
+};
+//y ahora solo llamamos al evento pasando como parametro la funcion
+txtRFC.addEventListener("blur", txtToUpper);
+txtCURP.addEventListener("blur", txtToUpper);
+
+txtTelefono.addEventListener("blur", function(event){
+    event.preventDefault();
+    //trim quita espacios, slice define el numero de campos para el numero, osea solo 10 
+    txtTelefono.value = txtTelefono.value.trim().slice(0,10);
+});
